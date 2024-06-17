@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+from models.events import Event
 app = FastAPI()
 
 
@@ -7,6 +7,7 @@ app = FastAPI()
 def read_root():
     return {"Hello": "World"}
  
-@app.get('/now')
-def now():
-    return [{"name" :"blair"}]
+@app.get('/events')
+def events():
+    events = Event.find_all()
+    return events
